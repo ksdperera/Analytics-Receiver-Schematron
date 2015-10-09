@@ -61,6 +61,53 @@
       </sch:assert>
     </sch:rule>
     
+    <sch:rule context="rs:from[@eventAdapterType='kafka']">
+      <sch:assert test="count(rs:property) = count(rs:property[@name='topic']) +
+      										 count(rs:property[@name='zookeeper.connect']) +
+      										 count(rs:property[@name='threads']) +
+      										 count(rs:property[@name='group.id']) +
+      										 count(rs:property[@name='events.duplicated.in.cluster']) +
+      										 count(rs:property[@name='optional.configuration'])">
+        Invalid Property Value Exist !
+      </sch:assert>
+    </sch:rule>
+    
+    <sch:rule context="rs:from[@eventAdapterType='mqqt']">
+      <sch:assert test="count(rs:property) = count(rs:property[@name='topic']) +
+      										 count(rs:property[@name='url']) +
+      										 count(rs:property[@name='username']) +
+      										 count(rs:property[@name='password']) +
+      										 count(rs:property[@name='clientId']) +
+      										 count(rs:property[@name='cleanSession'])">
+        Invalid Property Value Exist !
+      </sch:assert>
+    </sch:rule>
+    
+    <sch:rule context="rs:from[@eventAdapterType='soap']">
+      <sch:assert test="count(rs:property) = count(rs:property[@name='transports'])">
+        Invalid Property Value Exist !
+      </sch:assert>
+    </sch:rule>
+    
+    <sch:rule context="rs:from[@eventAdapterType='websocket']">
+      <sch:assert test="count(rs:property) = count(rs:property[@name='websocket.server.url']) +
+      										 count(rs:property[@name='events.duplicated.in.cluster'])">
+        Invalid Property Value Exist !
+      </sch:assert>
+    </sch:rule>    
+    
+    <sch:rule context="rs:from[@eventAdapterType='websocket-local']">
+      <sch:assert test="count(rs:property) = 0">
+        Invalid Property Value Exist !
+      </sch:assert>
+    </sch:rule>
+    
+    <sch:rule context="rs:from[@eventAdapterType='wso2event']">
+      <sch:assert test="count(rs:property) = count(rs:property[@name='events.duplicated.in.cluster'])">
+        Invalid Property Value Exist !
+      </sch:assert>
+    </sch:rule>
+    
   </sch:pattern>
   
 </sch:schema>
