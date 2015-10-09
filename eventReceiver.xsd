@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?schematron-schema href="eventReceiver.sch"?>
+
+<schema xmlns="http://www.w3.org/2001/XMLSchema" 
+		xmlns:rs="http://wso2.org/carbon/eventreceiver" 
+		targetNamespace="http://wso2.org/carbon/eventreceiver"
+		elementFormDefault="qualified"
+		>
+    <element name="eventReceiver" type="rs:eventReceiver"></element>
+    
+    <complexType name="eventReceiver">
+    	<sequence>
+    		<element name="from" type="rs:from"></element>
+    	</sequence>
+    	<attribute name="name" type="string" use="required"></attribute>
+    	<attribute name="statistics" type="rs:switch" use="required"></attribute>
+    	<attribute name="trace" type="rs:switch" use="required"></attribute>
+    </complexType>
+    
+    <simpleType name="switch">
+    	<restriction base="string">
+    		<enumeration value="disable"></enumeration>
+    		<enumeration value="enable"></enumeration>
+    	</restriction>
+    </simpleType>
+
+    <complexType name="from">
+    	<sequence>
+    		<element name="property" type="rs:propertyType"
+    			maxOccurs="unbounded" minOccurs="1" >
+    		</element>
+    	</sequence>
+    	<attribute name="eventAdapterType"
+    		type="rs:eventAdapterTypeType">
+    	</attribute>
+    </complexType>
+    
+    <simpleType name="eventAdapterTypeType">
+    	<restriction base="string">
+    		<enumeration value="email"></enumeration>
+    		<enumeration value="file-tail"></enumeration>
+    		<enumeration value="http"></enumeration>
+    		<enumeration value="jms"></enumeration>
+    		<enumeration value="kafka"></enumeration>
+    		<enumeration value="mqqt"></enumeration>
+    		<enumeration value="soap"></enumeration>
+    		<enumeration value="websocket"></enumeration>
+    		<enumeration value="websocket-local"></enumeration>
+    		<enumeration value="wso2event"></enumeration>
+    	</restriction>
+    </simpleType>
+
+    <complexType name="propertyType" mixed="true">
+    	<attribute name="name" type="rs:propertyNameType"></attribute>
+    	<attribute name="encrypted" type="boolean" use="optional"></attribute>
+    </complexType>
+    
+    <simpleType name="propertyNameType">
+    	<restriction base="string">
+    		<enumeration value="transport.PollInterval"></enumeration>
+    		<enumeration value="mail.protocol.host"></enumeration>
+    		<enumeration value="email.in.subject"></enumeration>
+    		<enumeration value="mail.protocol.password"></enumeration>
+    		<enumeration value="mail.protocol.user"></enumeration>
+    		<enumeration value="transport.mail.Address"></enumeration>
+    		<enumeration value="transport.mail.Protocol"></enumeration>
+    		<enumeration value="mail.protocol.port"></enumeration>
+    		<enumeration value="filepath"></enumeration>
+    		<enumeration value="startFromEnd"></enumeration>
+    		<enumeration value="delayInMillis"></enumeration>
+    		<enumeration value="transports"></enumeration>
+    		<enumeration value="java.naming.factory.initial"></enumeration>
+    		<enumeration value="jms.properties"></enumeration>
+    		<enumeration value="transport.jms.UserName"></enumeration>
+    		<enumeration value="java.naming.provider.url"></enumeration>
+    		<enumeration value="transport.jms.Password"></enumeration>
+    		<enumeration value="transport.jms.DestinationType"></enumeration>
+    		<enumeration value="transport.jms.SubscriptionDurable"></enumeration>
+    		<enumeration value="transport.jms.Destination"></enumeration>
+    		<enumeration value="transport.jms.DurableSubscriberName"></enumeration>
+    		<enumeration
+    			value="transport.jms.ConnectionFactoryJNDIName">
+    		</enumeration>
+    		<enumeration
+    			value="transport.jms.ConnectionFactoryJNDIName">
+    		</enumeration>
+    	</restriction>
+    </simpleType>
+</schema>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?schematron-schema href="eventReceiver.sch"?>
+<eventReceiver name="user-text"
+    statistics="disable" trace="enable" xmlns="http://wso2.org/carbon/eventreceiver">
+    
+ <from eventAdapterType="jms">
+ 
+ 	<!-- Email Property List -->
+	<!--property name="email.in.subject"></property>
+	<property name="mail.protocol.host"></property>
+	<property name="mail.protocol.password"></property>
+ 	<property name="mail.protocol.port"></property>
+ 	<property name="mail.protocol.user"></property>
+ 	<property name="transport.mail.Address"></property>
+ 	<property name="transport.mail.Protocol"></property>
+ 	<property name="transport.PollInterval"></property-->
+ 	
+ 	<!-- file-tail property list -->
+ 	<!--property name="filepath"></property>
+    <property name="delayInMillis"></property>
+    <property name="startFromEnd"></property-->
+    
+    <!-- http property list -->
+    <!--property name="transports"></property-->
+    
+    <!-- jms property list -->
+    <!--property name="java.naming.factory.initial"></property>
+    <property name="jms.properties"></property>
+    <property name="transport.jms.UserName"></property>
+    <property name="java.naming.provider.url"></property>
+    <property name="transport.jms.Password"></property>
+    <property name="transport.jms.DestinationType"></property>
+    <property name="transport.jms.SubscriptionDurable"></property>
+    <property name="transport.jms.Destination"></property>
+    <property name="transport.jms.DurableSubscriberName"></property>
+    <property name="transport.jms.ConnectionFactoryJNDIName"></property-->
+ </from>
+ 
+    
+</eventReceiver>
