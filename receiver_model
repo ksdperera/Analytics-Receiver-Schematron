@@ -1,0 +1,212 @@
+<eventReceiver
+    name="user-text"// Event Receiver Name*
+    statistics="{disable,enable}" trace="{disable,enable}" xmlns="http://wso2.org/carbon/eventreceiver">
+
+    <from eventAdapterType="{email,file-tail,http,jms,kafka,mqqt,soap,websocket,websocket-local,wso2event}">//Input Event Adapter Type*
+
+    ----------------------------if email---------------------------
+
+	<from eventAdapterType="email">
+
+        <property name="transport.PollInterval">user-int</property>
+        //Poll Interval (in seconds)*
+        ?A positive integer
+
+        <property name="mail.protocol.host">{pop.gmail.com, imap.gmail.com}</property>
+        //Mail Protocol Host* 
+        ?Mail receiver host address (eg: pop.gmail.com or imap.gmail.com)
+
+        <property name="email.in.subject">user-email</property>
+        //Subject* 
+        ?Only the Mails received on above subject will be processed. (Note: Mails need to be on plain text format)
+
+        <property encrypted="{true,false}" name="mail.protocol.password">***********</property>
+        //Password* 
+        ?Mail Password
+
+        <property name="mail.protocol.user">user-text</property>
+        //User Name* 
+        ?Mail username
+
+        <property name="transport.mail.Address">user-email</property>
+        //Receiving Mail Address* 
+        ?The mail address from which this service should fetch incoming mails.
+
+        <property name="transport.mail.Protocol">{pop3,imap}</property>
+        //Mail Protocol
+        ?The mail protocol to be used to receive messages.
+
+        <property name="mail.protocol.port">{995,993}</property>
+        //Mail Protocol Port*
+        ?Mail receiver protocol (eg: 995 or 993)
+
+    </from>
+    &customMapping disable
+    <mapping customMapping="disable" type="{xml,json,text}"/>
+
+    ------------------------else if file-tail------------------------
+    
+    <from eventAdapterType="file-tail">
+        <property name="filepath">user-filepath</property>
+        //File path*
+        ?Absolute path of the file (Eg: /home/cep/cep_4.0.0/wso2cep-4.0.0/repository/logs/wso2carbon.log)
+
+        <property name="startFromEnd">{true,false}</property>
+        //Start From End*
+        ?Set to true to tail from the end of the file, false to tail from the beginning of the file.
+
+        <property name="delayInMillis">user-numerical</property>
+        //Delay
+        ?The delay between checks for new content on file in milliseconds.
+    </from>
+    &customMapping disable
+    <mapping customMapping="disable" type="text"/>
+
+    -------------------------else if http----------------------------
+    
+ 	<from eventAdapterType="http">
+        <property name="transports">{all,https,http,local}</property>
+        //Transport(s)*
+    </from>
+    &customMapping disable
+    <mapping customMapping="disable" type="{xml,json,text}"/>
+
+    -------------------------else if jms----------------------------
+    
+    <from eventAdapterType="jms">
+        <property name="java.naming.factory.initial">user-text</property>
+        //Topic/Queue Name*
+        ?JNDI initial context factory class. The class must implement the java.naming.spi.InitialContextFactory interface.
+
+        <property name="jms.properties">user-text-formatted</property>
+        //JMS Properties
+        ?Axis2 JMS Properties, e.g. "property1: value1, property2: value2"
+
+        <property name="transport.jms.UserName">user-text</property>
+        //The JMS connection username
+
+        <property name="java.naming.provider.url">user-URL</property>
+        //JNDI Provider URL*
+        ?URL of the JNDI provider.
+
+        <property encrypted="{true,false}" name="transport.jms.Password">***********</property>
+        //The JMS connection password
+
+        <property name="transport.jms.DestinationType">{topic,queue}</property>
+        //Destination Type*
+        ?Type of the destination.
+
+        <property name="transport.jms.SubscriptionDurable">{true,false}</property>
+        //Enable Durable Subscription
+        ?Whether the subscription is durable or not.
+
+        <property name="transport.jms.Destination">user-text</property>
+        //Topic/Queue Name*
+        ?Topic/Queue name of the input stream
+
+        <property name="transport.jms.DurableSubscriberName">user-text</property>
+        //Durable Subscriber Name
+        ?Name of the durable subscriber (If any value added, Durable subscription will be enabled).
+
+        <property name="transport.jms.ConnectionFactoryJNDIName">user-text</property>
+        //Connection Factory JNDI Name*
+        ?The JNDI name of the connection factory.
+    </from>
+    &customMapping disable
+    <mapping customMapping="disable" type="{xml,json,map,text}"/>
+    
+    -------------------------else if kafka----------------------------
+    <from eventAdapterType="kafka">
+        <property name="topic">user-text</property>
+        //Topic Kafka*
+
+        <property name="zookeeper.connect">user-IP</property>
+        //Server Zookeeper IP*
+        ?IP address of the Zookeeper Server (eg: 127.0.0.1)
+
+        <property name="threads">user-int</property>
+        //Threads*
+        ?No of consumer threads
+
+        <property name="group.id">user-text</property>
+        //Group ID Kafka*
+
+        <property name="events.duplicated.in.cluster">{true,false}</property>
+        //Is events duplicated in cluster
+
+        <property name="optional.configuration">user-text-formatted-</property>
+        //Optional Configuration Properties
+        ?Define optional configuration properties (eg property_name1:property_value1,property_name2:property_value2)
+    </from>
+    &customMapping disable
+    <mapping customMapping="disable" type="{xml,json,text}"/>
+
+    -------------------------else if mqqt----------------------------
+    <from eventAdapterType="mqtt">
+        <property name="topic">user-text</property>
+        //Topic*
+        ?Topic subscribed
+
+        <property name="url">user-URL</property>
+        //Broker Url*
+        ?MQTT broker url
+
+        <property name="username">user-text</property>
+        //Username
+        ?Username of the broker (if required)
+
+        <property name="password">***********</property>
+        //Password
+        ?Password of the broker (if required)
+
+        <property name="clientId">user-text</property>
+        //Client Id
+        ?client identifier is used by the server to identify a client when it reconnects, It used for durable subscriptions or reliable delivery of messages is required.
+
+        <property name="cleanSession">{true,false}</property>
+        //Clean Session
+        ?Persist topic subscriptions and ack positions across client sessions
+    </from>
+    &customMapping disable
+    <mapping customMapping="disable" type="{xml,json,text}"/>
+
+    -------------------------else if soap----------------------------
+    <from eventAdapterType="soap">
+        <property name="transports">{all,https,http,local}</property>
+        //Transport(s)*
+    </from>
+    &customMapping disable
+    <mapping customMapping="disable" type="{xml}"/>
+
+    -------------------------else if websocket-----------------------
+    <from eventAdapterType="websocket">
+        <property name="websocket.server.url">user-URL</property>
+        //Web Socket Server URL *
+        ?URL of the web socket server you want to connect to, e.g. "ws://localhost:9099".
+
+        <property name="events.duplicated.in.cluster">{true,false}</property>
+        //Is events duplicated in cluster
+    </from>
+    &customMapping disable
+    <mapping customMapping="disable" type="{xml,json,text}"/>
+
+    -------------------------else if websocket-local-----------------------
+    <from eventAdapterType="websocket-local"/>
+    &customMapping disable
+    <mapping customMapping="disable" type="{xml,json,text}"/>
+
+    -------------------------else if wso2event-----------------------
+    <from eventAdapterType="wso2event">
+        <property name="events.duplicated.in.cluster">false</property>
+        //Is events duplicated in cluster
+        ?This depends on how events are published to the server, 'true' only if multiple receiver URLs are defined in different receiver groups ({}).
+    </from>
+    &customMapping disable
+    <mapping customMapping="disable" type="wso2event"/>
+    
+    <to streamName="user" version="1.0.0"/>
+</eventReceiver>
+
+
+
+
