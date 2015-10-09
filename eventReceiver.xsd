@@ -81,9 +81,19 @@
     		<enumeration
     			value="transport.jms.ConnectionFactoryJNDIName">
     		</enumeration>
-    		<enumeration
-    			value="transport.jms.ConnectionFactoryJNDIName">
-    		</enumeration>
+    		<enumeration value="topic"></enumeration>
+    		<enumeration value="zookeeper.connect"></enumeration>
+    		<enumeration value="threads"></enumeration>
+    		<enumeration value="group.id"></enumeration>
+    		<enumeration value="events.duplicated.in.cluster"></enumeration>
+    		<enumeration value="optional.configuration"></enumeration>
+    		<enumeration value="url"></enumeration>
+    		<enumeration value="username"></enumeration>
+    		<enumeration value="password"></enumeration>
+    		<enumeration value="clientId"></enumeration>
+    		<enumeration value="cleanSession"></enumeration>
+    		<enumeration value="websocket.server.url"></enumeration>
+    		<enumeration value="events.duplicated.in.cluster"></enumeration>
     	</restriction>
     </simpleType>
 </schema>
