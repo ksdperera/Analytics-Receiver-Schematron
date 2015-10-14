@@ -96,7 +96,7 @@
     	</sch:rule>
         
     	<sch:rule context="rs:property[@name='transport.PollInterval']">
-      		<sch:assert test="//rs:from[@eventAdapterType='email']">
+      		<sch:assert test="//rs:from[@eventAdapterType='email'] or //rs:from[@eventAdapterType='wso2event']">
          		Property name invalid under the adapter type!
       		</sch:assert>
       		<sch:assert test="count(//rs:from/rs:property[@name='transport.PollInterval'])=1">
@@ -293,7 +293,7 @@
     	</sch:rule>
     	
     	<sch:rule context="rs:property[@name='topic']">
-      		<sch:assert test="//rs:from[@eventAdapterType='kafka']">
+      		<sch:assert test="//rs:from[@eventAdapterType='kafka'] or //rs:from[@eventAdapterType='mqqt']">
          		Property name invalid under the adapter type!
       		</sch:assert>
       		<sch:assert test="count(//rs:from/rs:property[@name='topic'])=1">
@@ -329,7 +329,8 @@
     	</sch:rule>
     	
     	<sch:rule context="rs:property[@name='events.duplicated.in.cluster']">
-      		<sch:assert test="//rs:from[@eventAdapterType='kafka']">
+      		<sch:assert test="//rs:from[@eventAdapterType='kafka'] or //rs:from[@eventAdapterType='wso2event'] or
+      						  //rs:from[@eventAdapterType='websocket']">
          		Property name invalid under the adapter type!
       		</sch:assert>
       		<sch:assert test="count(//rs:from/rs:property[@name='events.duplicated.in.cluster'])=1">
@@ -364,7 +365,7 @@
     	</sch:rule>
     	
     	<sch:rule context="rs:property[@name='topic']">
-      		<sch:assert test="//rs:from[@eventAdapterType='mqqt']">
+      		<sch:assert test="//rs:from[@eventAdapterType='mqqt'] or //rs:from[@eventAdapterType='kafka']">
          		Property name invalid under the adapter type!
       		</sch:assert>
       		<sch:assert test="count(//rs:from/rs:property[@name='topic'])=1">
@@ -462,7 +463,8 @@
     	</sch:rule>
     	
     	<sch:rule context="rs:property[@name='events.duplicated.in.cluster']">
-      		<sch:assert test="//rs:from[@eventAdapterType='websocket']">
+      		<sch:assert test="//rs:from[@eventAdapterType='websocket'] or //rs:from[@eventAdapterType='wso2event'] or 
+      						  //rs:from[@eventAdapterType='kafka']">
          		Property name invalid under the adapter type!
       		</sch:assert>
       		<sch:assert test="count(//rs:from/rs:property[@name='events.duplicated.in.cluster'])=1">
@@ -491,17 +493,28 @@
     	<sch:title>Checks the From contents are correct for wso2event property</sch:title>  
     	
     	<sch:rule context="rs:from[@eventAdapterType='wso2event']">
-      		<sch:assert test="count(rs:property) = count(rs:property[@name='events.duplicated.in.cluster'])">
+      		<sch:assert test="count(rs:property) = count(rs:property[@name='events.duplicated.in.cluster'])+
+      											   count(rs:property[@name='transport.PollInterval'])">
         		Adapter type 'wso2event' miss match with mandatory properties !
       		</sch:assert>
     	</sch:rule>
     	
     	<sch:rule context="rs:property[@name='events.duplicated.in.cluster']">
-      		<sch:assert test="//rs:from[@eventAdapterType='wso2event']">
+      		<sch:assert test="//rs:from[@eventAdapterType='wso2event'] or //rs:from[@eventAdapterType='websocket']or
+      						  //rs:from[@eventAdapterType='kafka']">
          		Property name invalid under the adapter type!
       		</sch:assert>
       		<sch:assert test="count(//rs:from/rs:property[@name='events.duplicated.in.cluster'])=1">
          		Duplicate property name in 'events.duplicated.in.cluster'!
+      		</sch:assert>
+    	</sch:rule>
+    	
+    	<sch:rule context="rs:property[@name='transport.PollInterval']">
+      		<sch:assert test="//rs:from[@eventAdapterType='wso2event'] or //rs:from[@eventAdapterType='email']">
+         		Property name invalid under the adapter type!
+      		</sch:assert>
+      		<sch:assert test="count(//rs:from/rs:property[@name='transport.PollInterval'])=1">
+         		Duplicate property name in 'transport.PollInterval'!
       		</sch:assert>
     	</sch:rule>
   	</sch:pattern>
