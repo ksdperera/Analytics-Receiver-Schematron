@@ -3,37 +3,73 @@
 <eventReceiver name="user-text"
     statistics="disable" trace="enable" xmlns="http://wso2.org/carbon/eventreceiver">
     
- <from eventAdapterType="jms">
+ <from eventAdapterType="soap">
  
  	<!-- Email Property List -->
-	<!--property name="email.in.subject"></property>
-	<property name="mail.protocol.host"></property>
-	<property name="mail.protocol.password"></property>
- 	<property name="mail.protocol.port"></property>
- 	<property name="mail.protocol.user"></property>
- 	<property name="transport.mail.Address"></property>
- 	<property name="transport.mail.Protocol"></property>
- 	<property name="transport.PollInterval"></property-->
+<!-- 	<property name="email.in.subject"></property> -->
+<!-- 	<property name="mail.protocol.host"></property> -->
+<!-- 	<property name="mail.protocol.password"></property> -->
+<!--  	<property name="mail.protocol.port"></property> -->
+<!--  	<property name="mail.protocol.user"></property> -->
+<!--  	<property name="transport.mail.Address"></property> -->
+<!--  	<property name="transport.mail.Protocol"></property> -->
+<!--  	<property name="transport.PollInterval"></property> -->
+ 	
+ 	
+ 	
  	
  	<!-- file-tail property list -->
- 	<!--property name="filepath"></property>
-    <property name="delayInMillis"></property>
-    <property name="startFromEnd"></property-->
+<!--  	 <property name="filepath"></property> -->
+<!--     <property name="delayInMillis"></property> -->
+<!--     <property name="startFromEnd"></property> -->
     
     <!-- http property list -->
-    <!--property name="transports"></property-->
+<!--     <property name="transports"></property> -->
     
     <!-- jms property list -->
-    <!--property name="java.naming.factory.initial"></property>
-    <property name="jms.properties"></property>
-    <property name="transport.jms.UserName"></property>
-    <property name="java.naming.provider.url"></property>
-    <property name="transport.jms.Password"></property>
-    <property name="transport.jms.DestinationType"></property>
-    <property name="transport.jms.SubscriptionDurable"></property>
-    <property name="transport.jms.Destination"></property>
-    <property name="transport.jms.DurableSubscriberName"></property>
-    <property name="transport.jms.ConnectionFactoryJNDIName"></property-->
+<!--     <property name="java.naming.factory.initial"></property> -->
+<!--     <property name="jms.properties"></property> -->
+<!--     <property name="transport.jms.UserName"></property> -->
+<!--     <property name="java.naming.provider.url"></property> -->
+<!--     <property name="transport.jms.Password"></property> -->
+<!--     <property name="transport.jms.DestinationType"></property> -->
+<!--     <property name="transport.jms.SubscriptionDurable"></property> -->
+<!--     <property name="transport.jms.Destination"></property> -->
+<!--     <property name="transport.jms.DurableSubscriberName"></property> -->
+<!--     <property name="transport.jms.ConnectionFactoryJNDIName"></property> -->
+
+	<!-- kafka property list -->
+<!-- 	<property name="topic"></property> -->
+<!-- 	<property name="zookeeper.connect"></property> -->
+<!-- 	<property name="threads"></property> -->
+<!-- 	<property name="group.id"></property> -->
+<!--  	<property name="events.duplicated.in.cluster"></property> -->
+<!--    <property name="optional.configuration"></property> -->
+ 
+ 
+	<!-- mqqt property list -->
+<!-- 	<property name="topic"></property>  -->
+<!--  	<property name="url"></property> -->
+<!--  	<property name="username"></property> -->
+<!--  	<property name="password"></property> -->
+<!--  	<property name="clientId"></property> -->
+<!-- 	<property name="cleanSession"></property>  -->
+ 
+ 
+	<!-- soap property list -->
+	<property name="transports"></property> 
+
+	<!-- websocket property list -->
+<!--  	<property name="websocket.server.url"></property> -->
+<!-- 	<property name="events.duplicated.in.cluster"></property>  -->
+
+	
+ 	<!-- websocket-local property list -->
+ 	
+	<!-- wso2event property list -->
+<!-- 	<property name="events.duplicated.in.cluster"></property>  	 -->
+<!-- <property name="transport.PollInterval"></property> -->
+ 
  </from>
  
     
