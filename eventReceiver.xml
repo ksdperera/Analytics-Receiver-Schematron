@@ -3,7 +3,7 @@
 <eventReceiver name="user-text"
     statistics="disable" trace="enable" xmlns="http://wso2.org/carbon/eventreceiver">
     
- <from eventAdapterType="soap">
+ <from eventAdapterType="kafka">
  
  	<!-- Email Property List -->
 <!-- 	<property name="email.in.subject"></property> -->
@@ -39,12 +39,12 @@
 <!--     <property name="transport.jms.ConnectionFactoryJNDIName"></property> -->
 
 	<!-- kafka property list -->
-<!-- 	<property name="topic"></property> -->
-<!-- 	<property name="zookeeper.connect"></property> -->
-<!-- 	<property name="threads"></property> -->
-<!-- 	<property name="group.id"></property> -->
-<!--  	<property name="events.duplicated.in.cluster"></property> -->
-<!--    <property name="optional.configuration"></property> -->
+	<property name="topic"></property>
+	<property name="zookeeper.connect"></property>
+	<property name="threads"></property>
+	<property name="group.id"></property>
+ 	<property name="events.duplicated.in.cluster"></property>
+   <property name="optional.configuration"></property>
  
  
 	<!-- mqqt property list -->
@@ -57,7 +57,7 @@
  
  
 	<!-- soap property list -->
-	<property name="transports"></property> 
+<!-- 	<property name="transports"></property>  -->
 
 	<!-- websocket property list -->
 <!--  	<property name="websocket.server.url"></property> -->
@@ -68,9 +68,18 @@
  	
 	<!-- wso2event property list -->
 <!-- 	<property name="events.duplicated.in.cluster"></property>  	 -->
-<!-- <property name="transport.PollInterval"></property> -->
- 
+<!-- 	<property name="transport.PollInterval"></property> -->
  </from>
+ 
+ <mapping customMapping="disable" type="xml">
+<!--  <from streamName=" " version=""/> -->
+<!--  <xpathDefinition namespace="" prefix=""/> -->
+ 	<property>
+ 		<from/>
+ 		<to/>
+ 	</property>
+ 	
+ </mapping>
  
     
 </eventReceiver>

@@ -11,6 +11,7 @@
     <complexType name="eventReceiver">
     	<sequence>
     		<element name="from" type="rs:from"></element>
+    		<element name="mapping" type="rs:mapping"></element>
     	</sequence>
     	<attribute name="name" type="string" use="required"></attribute>
     	<attribute name="statistics" type="rs:switch" use="required"></attribute>
@@ -96,4 +97,87 @@
     		<enumeration value="events.duplicated.in.cluster"></enumeration>
     	</restriction>
     </simpleType>
+
+    <complexType name="mapping">
+    	<sequence>
+    		<choice>
+    			<element name="from" type="rs:mappingFrom" maxOccurs="1"
+    				minOccurs="0">
+    			</element>
+    			<element name="xpathDefinition"
+    				type="rs:xpathDefinitionType" maxOccurs="1" minOccurs="0">
+    			</element>
+    		</choice>
+            <element name="property" type="rs:mappingProperty" maxOccurs="unbounded" minOccurs="1"></element>
+        </sequence>
+    	<attribute name="customMapping" type="rs:switch"></attribute>
+    	<attribute name="type" type="rs:metaType"></attribute>
+    </complexType>
+
+    <simpleType name="metaType">
+    	<restriction base="string">
+    		<enumeration value="xml"></enumeration>
+    		<enumeration value="text"></enumeration>
+    		<enumeration value="json"></enumeration>
+    		<enumeration value="map"></enumeration>
+    		<enumeration value="wso2event"></enumeration>
+    	</restriction>
+    </simpleType>
+
+
+    <complexType name="mappingFrom">
+    	<attribute name="streamName" type="string"></attribute>
+    	<attribute name="version" type="string"></attribute>
+    </complexType>
+
+    <complexType name="xpathDefinitionType">
+    	<attribute name="namespace" type="anyURI"></attribute>
+    	<attribute name="prefix" type="string"></attribute>
+    </complexType>
+
+
+    <complexType name="mappingProperty">
+    	<sequence>
+    		<element name="from" type="rs:mappingPropertyFrom"></element>
+    		<element name="to" type="rs:mappingPropertyTo"></element>
+    	</sequence>
+    </complexType>
+    
+
+    <complexType name="mappingPropertyFrom">
+    	<attribute name="dataType"
+    		type="rs:mappingPropertyFromDataType">
+    	</attribute>
+    	<attribute name="name" type="string"></attribute>
+    	<attribute name="xpath" type="string"></attribute>
+    	<attribute name="jsonPath" type="string"></attribute>
+    	<attribute name="regex" type="string"></attribute>
+    </complexType>
+
+    <complexType name="mappingPropertyTo">
+    	<attribute name="name" type="string"></attribute>
+    	<attribute name="type" type="rs:mappingPropertyToType"></attribute>
+    	<attribute name="default" type="string"></attribute>
+    </complexType>
+    
+    <simpleType name="mappingPropertyFromDataType">
+    	<restriction base="string">
+    		<enumeration value="meta"></enumeration>
+    		<enumeration value="correlation"></enumeration>
+    		<enumeration value="payload"></enumeration>
+    	</restriction>
+    </simpleType>
+
+    <simpleType name="mappingPropertyToType">
+    	<restriction base="string">
+    		<enumeration value="bool"></enumeration>
+    		<enumeration value="int"></enumeration>
+    		<enumeration value="value"></enumeration>
+    		<enumeration value="string"></enumeration>
+    		<enumeration value="double"></enumeration>
+    		<enumeration value="float"></enumeration>
+    	</restriction>
+    </simpleType>
+
+
 </schema>
