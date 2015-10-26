@@ -61,7 +61,9 @@ public class ReceiverBuilder extends IncrementalProjectBuilder {
 	
 	public static final String BUILDER_ID = "wso2.xml.test.builder.sampleBuilder";
 	private static final String MARKER_TYPE = "wso2.xml.test.builder.xmlProblem";
-	public static final String PATH_ECLIPSE_WRAPPER = "resources/schematron-message.xsl";
+	private static final String BUNDLE_NAME = "wso2.xml.test.builder";
+	public static final String PATH_TO_SCH_MESSAGE = "resources/schematron-message.xsl";
+	public static final String PATH_TO_SCH = "resources/eventReceiver.sch";
 	public static final String RECORD_IDENTIFIER = "@@@";
 	public static final String FIELD_DELIMITER = ":";
 	public static final String MESSAGE_TYPE_ASSERT = "ASSERT";
@@ -228,8 +230,8 @@ public class ReceiverBuilder extends IncrementalProjectBuilder {
 			if (node.getNodeName().equals("eventReceiver"))
 			{
 				File f = null;				
-				Bundle bundle = Platform.getBundle("wso2.xml.test.builder");
-				URL fileURL = bundle.getEntry("resources/eventReceiver.sch");
+				Bundle bundle = Platform.getBundle(BUNDLE_NAME);
+				URL fileURL = bundle.getEntry(PATH_TO_SCH);
 				try {
 				    f = new File(FileLocator.resolve(fileURL).toURI());
 				} catch (URISyntaxException e1) {
@@ -267,8 +269,8 @@ public class ReceiverBuilder extends IncrementalProjectBuilder {
 			File schemaFile = new File(schFileName);
 			
 			File f = null;				
-			Bundle bundle = Platform.getBundle("wso2.xml.test.builder");
-			URL fileURL = bundle.getEntry("resources/schematron-message.xsl");
+			Bundle bundle = Platform.getBundle(BUNDLE_NAME);
+			URL fileURL = bundle.getEntry(PATH_TO_SCH_MESSAGE);
 			try {
 			    f = new File(FileLocator.resolve(fileURL).toURI());
 			} catch (URISyntaxException e1) {
