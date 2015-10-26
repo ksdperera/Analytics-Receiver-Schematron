@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Builder
+Bundle-SymbolicName: wso2.xml.test.builder;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: wso2.xml.test.builder.Activator
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.core.resources
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Bundle-ActivationPolicy: lazy

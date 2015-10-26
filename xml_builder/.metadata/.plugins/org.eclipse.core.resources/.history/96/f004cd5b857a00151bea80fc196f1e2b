@@ -1,0 +1,7 @@
+source.. = src/
+output.. = bin/
+bin.includes = plugin.xml,\
+               META-INF/,\
+               .,\
+               lib/saxon8-dom.jar,\
+               lib/saxon8.jar
